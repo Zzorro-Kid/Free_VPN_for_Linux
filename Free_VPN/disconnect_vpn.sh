@@ -1,29 +1,29 @@
 #!/bin/bash
 
-echo "[*] Поиск активного VPN..."
+echo "[*] Finding an active VPN..."
 
 
 if pgrep openvpn > /dev/null; then
-    echo "[*] Обнаружен OpenVPN — завершаем процесс..."
+    echo "[*] OpenVPN detected - finalize the process..."
     sudo pkill openvpn
 else
-    echo "[*] OpenVPN не запущен."
+    echo "[*] OpenVPN is not running"
 fi
 
 
 VPN_NAME="your-vpn-name"  
 
 if nmcli con show --active | grep -q "$VPN_NAME"; then
-    echo "[*] Отключаем VPN через NetworkManager ($VPN_NAME)..."
+    echo "[*] Disabling VPN through NetworkManager ($VPN_NAME)..."
     nmcli con down "$VPN_NAME"
 else
-    echo "[*] VPN $VPN_NAME неактивен или не найден в NetworkManager."
+    echo "[*] VPN $VPN_NAME is inactive or not found in NetworkManager."
 fi
 
 
 if ip a | grep -q tun0; then
-    echo "[!] Интерфейс tun0 всё ещё активен!"
+    echo "[!] The tun0 interface is still active!"
 else
-    echo "[+] VPN-интерфейс успешно отключён."
+    echo "[+] The VPN interface has been successfully disabled."
 fi
 
