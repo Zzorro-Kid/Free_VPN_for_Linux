@@ -12,8 +12,8 @@ A set of Bash scripts to automatically connect to free VPN servers (via VPNGate)
 
 # 📦 Scripts
 
- 1. vpn_autoconnect.sh
- 2. disconnect_vpn.sh
+ 1. **vpn_autoconnect.sh**
+ 2. **disconnect_vpn.sh**
 
 🔹 Purpose:
     
